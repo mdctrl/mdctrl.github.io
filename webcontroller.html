@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Macrodroid Integration</title>
+  <meta charset="UTF-8">
+  <meta name="description" content="Macodroid Automation example for controlling mobile device via web controller">
+  <meta name="keywords" content="WebController, MacrodroidAutomationWebController, WebControllerForAutomation, DeviceAutomationController, WebtoMobiController">
+  <meta name="author" content="Dhyan">
+  <link rel="stylesheet" href="styles.css">
+  <script src="JS/jquery-3.6.3.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+  <h1 class="centerheading">Web Controller</h1>
+  <div class="box">
+    <span class="title">Touch Actions Via </span><br>
+    <span style="color:white;font-weight: bold;">Select Method: </span><input type="button" value="X,Y" class="xy selected">
+    <input type="button" value="Text" class="text">
+    <input type="button" value="View Id" class="id">
+    <input type="button" value="Gesture" class="gesture"><br><br>
+  <section id="xy">
+    <label>X Location: </label>
+    <input type="text" id="X"><br>
+    <label>Y Location: </label>
+    <input type="text" id="Y"><br>
+    <button class="button" onclick="senddata('?X='+val('X')+'&Y='+val('Y'))">Test</button>
+  </section>
+  <section id="text">
+    <label>Text: </label>
+    <input type="text" id="txt"><br>
+    <button class="button" onclick="senddata('?text='+val('txt'))">Test</button>
+  </section>
+  <section id="id">
+    <label>View Id: </label>
+    <input type="text" id="idval"><br>
+    <button class="button" onclick="senddata('?id='+val('idval')+'&subject='+val('subject'))">Test</button>
+  </section>
+  <section id="gesture">
+    <label>SX: </label>
+    <input type="text" id="SX"><br>
+    <label>SY: </label>
+    <input type="text" id="SY"><br>
+    <label>EX: </label>
+    <input type="text" id="EX"><br>
+    <label>EY: </label>
+    <input type="text" id="EY"><br>
+    <button class="button" onclick="senddata('?SX='+val('SX')+'&SY='+val('SY')+'&EX='+val('EX')+'&EY='+val('EY'))">Test</button>
+  </section>
+  </div>
+  <div class="box">
+    <span class="title">Display Dialog</span><br>
+    <label>Title : </label>
+    <input type="text" id="ttl"><br>
+    <label>Description : </label>
+    <input type="text" id="desc"><br>
+    <button class="button" onclick="senddata('?ttl='+val('ttl')+'&msg='+val('desc')+'&Tempvar=message')">Test</button>
+  </div>
+  <div class="box">
+    <span class="title">Popup (Toast)</span><br>
+    <label>Input : </label>
+    <input type="text" id="popup"><br>
+    <button class="button" onclick="senddata('?popup='+val('popup'))">Test</button>
+  </div>
+  <div class="box">
+    <span class="title">Show Notification</span><br>
+    <label>Title : </label>
+    <input type="text" id="ttln"><br>
+    <label>Description : </label>
+    <input type="text" id="descn"><br>
+    <button class="button" onclick="senddata('?ttl='+val('ttln')+'&msg='+val('descn')+'&Tempvar=notimessage')">Test</button>
+  </div>
+  <div class="box">
+    <span class="title">Speak Something</span><br>
+    <label>Input : </label>
+    <input type="text" id="speak"><br>
+    <button class="button" onclick="senddata('?speak='+val('speak')+'&Tempvar=speak')">Test</button>
+  </div>
+  <div class="box">
+    <span class="title">Floating Text</span><br>
+    <label>Text : </label>
+    <input type="text" id="ftxt"><br>
+    <button class="button" onclick="senddata('?ftext='+val('ftxt')+'&Tempvar=floaton')">Test</button>
+    <button class="button" style="margin: 5px;display: inline;" onclick="senddata('?Tempvar=floatoff')">Disable Floating Text</button>  
+  </div>
+  <div class="box">
+    <span class="title">Paste Text</span><br>
+    <label>Text: </label>
+    <input type="text" id="paste"><br>
+    <button class="button" onclick="senddata('?paste='+val('paste'))">Test</button>
+    <button class="button" style="margin: 5px;display: inline;" onclick="senddata('?paste=clrscr')">Clear Input Field</button>
+  </div>
+  <div class="box">
+    <span class="title">DIM Screen</span><br>
+    <label>Input (0-100) : </label>
+    <input type="text" id="dim"><br>
+    <button class="button" onclick="senddata('?DIM='+val('dim'))">Test</button>
+    <button class="button" style="margin: 5px;display: inline;" onclick="senddata('?Tempvar=dimoff')">Dim Screen Off</button>
+  </div>
+  <div class="box">
+    <span class="title">Control Brightness</span><br>
+    <label>Input (0-100) : </label>
+    <input type="text" id="brts"><br>
+    <button class="button" onclick="senddata('?brightness='+val('brts')+'&Tempvar=bright')">Test</button>
+  </div>
+  <div class="box">
+    <div id="simplevar">
+      <span class="title">Variable Control</span>
+      <br>
+      <label>Var Name : </label>
+      <input type="text" id="varname"><br>
+      <label>Var Value : </label>
+      <input type="text" id="varvalue"><br>
+      <button class="button" onclick="senddata('?'+val('varname')+'='+val('varvalue'))">Test</button>
+      <button class="button" style="margin: 5px;display: inline;" id="advanced">Advanced Mode (Multi Var)</button>
+    </div>
+    <div id="advancedvar">
+      <span class="title">Advanced Variable Control</span>
+      <br>
+      <label>Input : </label>
+      <input type="text" id="parameters"><br><br>
+      <span style="color:white;">Example: intparam=13&strparam&boolparam=false</span><br>
+      <button class="button" onclick="senddata('?'+val('parameters'))">Test</button>
+      <button class="button" style="margin: 5px;display: inline;" id="simple">Go To Normal Mode</button>
+    </div>
+  </div>
+  <div>
+    <table>
+      <tr>
+        <td><span class="button" onclick="senddata('?text=RECENT')">Recent</span></td>
+        <td><span class="button" onclick="senddata('?text=HOME')">Home</span></td>
+        <td><span class="button" onclick="senddata('?text=BACK')">Back</span></td>
+      </tr>
+      <tr>
+        <td><span class="button" onclick="senddata('?Tempvar=dndon')">DND ON</span></td>
+        <td><span class="button" onclick="senddata('?Tempvar=dndoff')">DND OFF</span></td>
+        <td><span class="button" onclick="senddata('?Tempvar=lock')">Lock Screen</span></td>
+      </tr>
+      <tr>
+        <td><span class="button" onclick="senddata('?Tempvar=wifion')">Wifi On</span></td>
+        <td><span class="button" onclick="senddata('?Tempvar=wifioff')">Wifi Off</span></td>
+        <td><span class="button" onclick="senddata('?Tempvar=torch')">Torch Toggle</span></td>
+      </tr>
+      <tr>
+        <td><span class="button" onclick="senddata('?Tempvar=bton')">Bluetooth On</span></td>
+        <td><span class="button" onclick="senddata('?Tempvar=btoff')">Bluetooth Off</span></td>
+        <td><span class="button" onclick="senddata('?Tempvar=takephoto')">Take Selfie</span></td>
+      </tr>
+      <tr>
+        <td><span class="button" onclick="senddata('?Tempvar=htspton')">Hotspot On</span></td>
+        <td><span class="button" onclick="senddata('?Tempvar=htsptoff')">Hotspot Off</span></td>
+        <td><span class="button" onclick="senddata('?Tempvar=fullvolume')">Full Volume</span></td>
+      </tr>
+      <tr>
+        <td><span class="button" onclick="senddata('?text=ENOTIBAR')">Expand Notification Bar</span></td>
+        <td><span class="button" onclick="senddata('?text=CNOTIBAR')">Collapse Notification Bar</span></td>
+        <td><span class="button" onclick="senddata('?Tempvar=alarm')">Ring Alarm At Full Volume</span></td>
+      </tr>
+      <tr style="text-align: center;">
+        <td colspan="3">
+          <span class="button" style="width: 90%;" onclick="confirmUnlock()">Unlock The Phone</span>
+        </td>
+      </tr>
+      
+     
+      <tr style="text-align: center;">
+      <td colspan="3"><span class="button" style="width: 90%;" onclick="senddata('?Tempvar=cancel')">Stop Alarm</span></td>
+      </tr>
+      
+    </table>
+  </div>
+    <div id="openModal" class="modalDialog">
+      <div>
+        <h2>Enter Your Webhook URL Below: </h2>
+        <input type="text" id="webhookurl" placeholder="Example: https://trigger.macrodroid.com/13062002-ca94-3fqe-a042-cf22cffe6bwc/enablewebhook">
+        <p><span class="white">Disclaimer:</span> This website will never store or send your private information like webhook url and your activities. For Confirmation, You Can Inspect Code. Thank You<br><br><span class="white">Developer:</span>  From Dhyan <a href="https://www.instagram.com/DhyanCanPlay/"><i class="fa fa-instagram" style="font-size:20px;background-color:transparent;border-radius: 5px;padding: 2px 3px;color:rgb(255, 0, 200);"></i></a></p><span id="warning"></span>
+        <div class="right"><input type="button" id="websaver" value="Proceed"></div>
+      </div>
+    </div>
+  <center>
+    <div class="spcl" style="color: white;text-align:center;font-weight: bold;">Note: You have to install macro named <a href="https://macrodroidlink.com/macrostore?id=12667" style="color: rgb(2, 172, 198);text-decoration: none;font-weight: bold;display: inline;">"Control Device Remotely (From Website) 15+ Features"</a> in your device inorder to use this Web controller.<br><br>Developed By: <span class="heart">&#10084;</span> From Dhyan <a href="https://www.instagram.com/DhyanCanPlay/"><i class="fa fa-instagram" style="font-size:20px;background-color:white;border-radius: 5px;padding: 2px 3px;color:rgb(244, 0, 208);"></i></a></div>
+  </center>
+  <iframe src=""></iframe>
+</body>
+<script src="JS/main.js"></script>
+</html>

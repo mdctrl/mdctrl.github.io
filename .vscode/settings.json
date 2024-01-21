@@ -1,0 +1,5 @@
+{
+    "workbench.startupEditor": "none",
+    "terminal.integrated.shellIntegration.enabled": false,
+    "liveServer.settings.file": "webcontroller.html"
+}
