@@ -60,7 +60,7 @@ $("#webhookurl").keypress(function(event) {
 $("#websaver").click(function () {
     if ($("#webhookurl").val()) {
         var enteredUrl = $("#webhookurl").val();
-        var desiredStart = "https://trigger.macrodroid.com";
+        var desiredStart = "https://trigger.macrodroid.com/";
         var desiredEnd = "Enablethewebhook";
 
         if (enteredUrl.startsWith(desiredStart) && enteredUrl.endsWith(desiredEnd)) {
@@ -85,8 +85,8 @@ function confirmUnlock() {
 	var confirmation = confirm("Are you sure you want to unlock Your Phone?");
 	if (confirmation) {
 	  senddata('?Tempvar=ZUNLOCK');
-	} else {
-	  // User clicked Cancel, do nothing
+	} else {nothing
+	  // User clicked Cancel, do 
 	}
   }
 
