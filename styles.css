@@ -1,5 +1,6 @@
 body{
-    background: black /*radial-gradient(#ca0d0d,#000000)*/;
+    background: black ;
+    font-size :16 ;
   }
   .box{
     border: 1px solid purple;
@@ -11,15 +12,22 @@ body{
     margin: 10px auto;
       background: transparent;
   }
+
+  @keyframes border-pulsate {
+
+    44%  { border: 1px solid rgba(255, 0, 0, 1); }
+    79%  { border: 1px solid rgba(0, 0, 0, 1); }
+    100% { border: 1px solid rgba(255, 0, 0, 1); }
+}
+
   .box:hover{
-    border: 1px solid red;
-    border-radius: 11px;
-    padding: 10px;
+    border-radius: 15px;
+    padding: 29px;
     display: block;
     text-align: center;
     width: 400px;
     margin: 10px auto;
-      background: #7d00006a;
+    animation: border-pulsate 3.9729s infinite alternate;
   }
 
 
@@ -32,7 +40,7 @@ body{
   }
   [type="text"]{
     border-radius: 3px;
-    border-color: #transparent;
+    border-color: transparent;
     outline: none;
     margin: 5px 0px;
     padding: 3px;
@@ -50,6 +58,7 @@ body{
     color: rgb(8, 0, 0);
     background-color:rgb(204, 0, 0);
   }
+  
   @media only screen and (max-width: 768px) {
     /* For mobile phones: */
   .centerheading
@@ -108,7 +117,7 @@ body{
     margin: 2px;
   }
   span.button:active{
-    background-color: rgb(23, 255, 34);
+    background-color: rgb(23, 255, 34) ;
     color: rgb(0, 0, 0);
   }
   .spcl{
@@ -159,12 +168,8 @@ body{
     padding: 5px;
   }
   #websaver:active{
-    background-color: #01a6b2;
+    background-color: #00ff66;
     color: white;
-    border: 2px solid white;
+    border: 2px solid black;
   }
-  .heart{
-    color: red;
-    font-size: 18px;
-    font-weight: bold;
-  }
+  
