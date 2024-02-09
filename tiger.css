@@ -1,12 +1,16 @@
 
 body {
     height: 100%;
-    padding: 60px;
-padding-top: 0%;
+    padding: 57px;
+    padding-top: 0%;
     background: linear-gradient(319deg, #91d370 0%, #bca0ff 37%, #f2cd54 100%);;
-
-
-overscroll-behavior: auto none;
+    overscroll-behavior: auto none;
 
 
 }
+
+
+img {
+
+    height: 20%;
+    }
